@@ -1,2 +1,2 @@
 FROM nginx
-COPY bus-booking.htm /usr/share/nginx/html
+COPY login.htm /usr/share/nginx/html
