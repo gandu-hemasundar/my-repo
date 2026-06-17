@@ -1,9 +1,10 @@
+cat > login.htm << 'EOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BusTicket - Login</title>
+    <title>Bus Ticket Booking - Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -43,7 +44,6 @@
             }
         }
 
-        /* Header with bus icon */
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 35px 30px 30px;
@@ -91,7 +91,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Form body */
         .body {
             padding: 35px 30px 30px;
         }
@@ -112,7 +111,6 @@
             font-size: 14px;
         }
 
-        /* Form fields */
         .form-group {
             margin-bottom: 20px;
             position: relative;
@@ -157,14 +155,6 @@
             box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
         }
 
-        .form-group input:focus + .input-wrapper i {
-            color: #667eea;
-        }
-
-        .form-group input:focus ~ i {
-            color: #667eea;
-        }
-
         .form-group .toggle-password {
             position: absolute;
             right: 15px;
@@ -179,7 +169,6 @@
             color: #667eea;
         }
 
-        /* Options row */
         .options-row {
             display: flex;
             justify-content: space-between;
@@ -215,7 +204,6 @@
             text-decoration: underline;
         }
 
-        /* Login button */
         .login-btn {
             width: 100%;
             padding: 15px;
@@ -247,7 +235,6 @@
             font-size: 18px;
         }
 
-        /* Register link */
         .register-link {
             text-align: center;
             margin-top: 20px;
@@ -267,30 +254,6 @@
             text-decoration: underline;
         }
 
-        /* Error message */
-        .error-message {
-            background: #fee;
-            color: #c0392b;
-            padding: 12px 15px;
-            border-radius: 10px;
-            font-size: 13px;
-            display: none;
-            margin-bottom: 15px;
-            border-left: 4px solid #c0392b;
-        }
-
-        .error-message.show {
-            display: block;
-            animation: shake 0.5s ease;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-
-        /* Social login */
         .divider {
             display: flex;
             align-items: center;
@@ -348,7 +311,28 @@
             color: #4267B2;
         }
 
-        /* Responsive */
+        .error-message {
+            background: #fee;
+            color: #c0392b;
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 13px;
+            display: none;
+            margin-bottom: 15px;
+            border-left: 4px solid #c0392b;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
         @media (max-width: 480px) {
             .container {
                 border-radius: 15px;
@@ -382,7 +366,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <div class="icon">
                 <i class="fas fa-bus"></i>
@@ -391,20 +374,17 @@
             <p>Book your bus tickets online</p>
         </div>
 
-        <!-- Body -->
         <div class="body">
             <div class="welcome-text">
                 <h2>Welcome Back!</h2>
                 <p>Login to manage your bookings</p>
             </div>
 
-            <!-- Error Message -->
             <div id="errorMessage" class="error-message">
                 <i class="fas fa-exclamation-circle"></i>
                 <span id="errorText">Invalid credentials. Please try again.</span>
             </div>
 
-            <!-- Login Form -->
             <form id="loginForm" onsubmit="return handleLogin(event)">
                 <div class="form-group">
                     <label for="email">Email Address</label>
@@ -469,7 +449,6 @@
     </div>
 
     <script>
-        // Toggle password visibility
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const toggleIcon = document.querySelector('.toggle-password');
@@ -485,7 +464,6 @@
             }
         }
 
-        // Handle login form submission
         function handleLogin(event) {
             event.preventDefault();
             
@@ -494,76 +472,53 @@
             const errorMessage = document.getElementById('errorMessage');
             const errorText = document.getElementById('errorText');
 
-            // Simple validation
             if (!email || !password) {
                 showError('Please fill in all fields');
                 return false;
             }
 
-            // Email format validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 showError('Please enter a valid email address');
                 return false;
             }
 
-            // Password length validation
             if (password.length < 6) {
                 showError('Password must be at least 6 characters');
                 return false;
             }
 
-            // Simulate login (in real app, this would be an API call)
-            // Demo credentials: admin@bus.com / password123
             if (email === 'admin@bus.com' && password === 'password123') {
-                // Success
                 errorMessage.classList.remove('show');
                 alert('Login successful! Redirecting to dashboard...');
-                // window.location.href = 'dashboard.html'; // Uncomment in real app
                 return true;
             } else {
-                // Failed login
                 showError('Invalid email or password. Please try again.');
                 return false;
             }
         }
 
-        // Show error message
         function showError(message) {
             const errorMessage = document.getElementById('errorMessage');
             const errorText = document.getElementById('errorText');
             errorText.textContent = message;
             errorMessage.classList.add('show');
             
-            // Auto-hide after 5 seconds
             setTimeout(() => {
                 errorMessage.classList.remove('show');
             }, 5000);
         }
 
-        // Social login demo
         function socialLogin(provider) {
             alert(`Logging in with ${provider}... (Demo)`);
         }
 
-        // Enter key to submit
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const form = document.getElementById('loginForm');
-                if (form) {
-                    form.dispatchEvent(new Event('submit'));
-                }
-            }
-        });
-
-        // Remove error on input
         document.querySelectorAll('input').forEach(input => {
             input.addEventListener('input', function() {
                 document.getElementById('errorMessage').classList.remove('show');
             });
         });
 
-        // Check for saved credentials (demo)
         window.onload = function() {
             const savedEmail = localStorage.getItem('rememberedEmail');
             if (savedEmail) {
@@ -571,35 +526,7 @@
                 document.getElementById('remember').checked = true;
             }
         };
-
-        // Save credentials when form is submitted successfully
-        function saveCredentials(email) {
-            if (document.getElementById('remember').checked) {
-                localStorage.setItem('rememberedEmail', email);
-            } else {
-                localStorage.removeItem('rememberedEmail');
-            }
-        }
-
-        // Modify handleLogin to save credentials
-        const originalHandleLogin = handleLogin;
-        handleLogin = function(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Your existing validation...
-            if (email === 'admin@bus.com' && password === 'password123') {
-                saveCredentials(email);
-                document.getElementById('errorMessage').classList.remove('show');
-                alert('Login successful! Redirecting to dashboard...');
-                return true;
-            } else {
-                showError('Invalid email or password. Please try again.');
-                return false;
-            }
-        };
     </script>
 </body>
 </html>
+EOF
