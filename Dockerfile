@@ -1,2 +1,2 @@
-FROM nginx-alpine
+FROM nginx
 COPY bus-booking.htm /usr/share/nginx/html
