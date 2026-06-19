@@ -7,4 +7,4 @@ COPY . .
 FROM first_stage
 RUN npm install --production
 COPY . .
-CMD ['node', 'server.js']
+CMD ["node", "server.js"]
