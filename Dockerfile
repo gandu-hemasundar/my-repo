@@ -1,6 +1,6 @@
 FROM node:19-alpine as first_stage
 WORKDIR /ROOMBOOKINGAPP
-COPY Package*.json .
+COPY package*.json .
 RUN npm install
 COPY . .
 
