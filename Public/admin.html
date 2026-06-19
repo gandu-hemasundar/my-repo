@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Room Booking</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏨 Admin Panel</h1>
+            <nav>
+                <a href="/">Book Room</a>
+                <a href="/admin" class="active">Admin Panel</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="admin-controls">
+                <h2>Manage Bookings</h2>
+                <div class="controls">
+                    <button id="refreshBtn" class="btn-secondary">🔄 Refresh</button>
+                    <button id="clearAllBtn" class="btn-danger">🗑️ Clear All</button>
+                </div>
+            </section>
+
+            <section class="bookings-list">
+                <h3>All Bookings</h3>
+                <div id="bookingsContainer">
+                    <p>Loading bookings...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>
